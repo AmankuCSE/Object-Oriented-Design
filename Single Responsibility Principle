@@ -1,1 +1,103 @@
+/**
+ * This class represents a user profile.
+ * It has the responsibility of managing user data.
+ */
+class UserDataManager {
+
+    private String username;
+    private String email;
+    private int age;
+
+    /**
+     * Constructs a user profile with the given username, email, and age.
+     * @param username The username of the user.
+     * @param email The email of the user.
+     * @param age The age of the user.
+     */
+    public UserDataManager(String username, String email, int age) {
+        this.username = username;
+        this.email = email;
+        this.age = age;
+    }
+
+    /**
+     * Gets the username of the user.
+     * @return The username.
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Sets the username of the user.
+     * @param username The new username.
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * Gets the email of the user.
+     * @return The email.
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets the email of the user.
+     * @param email The new email.
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Gets the age of the user.
+     * @return The age.
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * Sets the age of the user.
+     * @param age The new age.
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+/**
+ * This class is responsible for displaying user information.
+ */
+class UserInfoPrinter {
+
+    /**
+     * Displays the user information.
+     * @param userDataManager The UserDataManager object containing user data.
+     */
+    public void displayUserInfo(UserDataManager userDataManager) {
+        System.out.println("Username: " + userDataManager.getUsername());
+        System.out.println("Email: " + userDataManager.getEmail());
+        System.out.println("Age: " + userDataManager.getAge());
+    }
+}
+
+/**
+ * Main class to demonstrate the Single Responsibility Principle.
+ */
+public class Main {
+    public static void main(String[] args) {
+        // Create a UserDataManager object
+        UserDataManager userDataManager = new UserDataManager("JohnDoe", "john@example.com", 30);
+
+        // Create a UserInfoPrinter object
+        UserInfoPrinter userInfoPrinter = new UserInfoPrinter();
+
+        // Display user information using the UserInfoPrinter
+        userInfoPrinter.displayUserInfo(userDataManager);
+    }
+}
 
