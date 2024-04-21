@@ -1,0 +1,95 @@
+/**
+ * This interface represents a device that can print.
+ */
+interface Printer {
+    /**
+     * Prints a document.
+     * @param document The document to be printed.
+     */
+    void print(String document);
+}
+
+/**
+ * This interface represents a device that can scan.
+ */
+interface Scanner {
+    /**
+     * Scans a document.
+     * @return The scanned document.
+     */
+    String scan();
+}
+
+/**
+ * This class represents a multifunctional printer which can both print and scan documents.
+ * It implements both the Printer and Scanner interfaces.
+ */
+class MultifunctionalPrinter implements Printer, Scanner {
+    /**
+     * Prints a document.
+     * @param document The document to be printed.
+     */
+    @Override
+    public void print(String document) {
+        System.out.println("Printing: " + document);
+    }
+
+    /**
+     * Scans a document.
+     * @return The scanned document.
+     */
+    @Override
+    public String scan() {
+        System.out.println("Scanning...");
+        return "Scanned Document";
+    }
+}
+
+/**
+ * This class represents a simple printer which can only print documents.
+ * It implements the Printer interface.
+ */
+class SimplePrinter implements Printer {
+    /**
+     * Prints a document.
+     * @param document The document to be printed.
+     */
+    @Override
+    public void print(String document) {
+        System.out.println("Printing: " + document);
+    }
+}
+
+/**
+ * This class represents a simple scanner which can only scan documents.
+ * It implements the Scanner interface.
+ */
+class SimpleScanner implements Scanner {
+    /**
+     * Scans a document.
+     * @return The scanned document.
+     */
+    @Override
+    public String scan() {
+        System.out.println("Scanning...");
+        return "Scanned Document";
+    }
+}
+
+/**
+ * This class demonstrates the Interface Segregation Principle.
+ * It shows how specific interfaces are preferred over a general-purpose interface.
+ */
+public class InterfaceSegregationDemo {
+    /**
+     * Prints a document using the given printer.
+     * @param printer The printer object.
+     * @param document The document to be printed.
+     */
+    public static void printDocument(Printer printer, String document) {
+        printer.print(document);
+    }
+
+    /**
+     * Scans a document using the given scanner.
+     * @param scanner The scanne
