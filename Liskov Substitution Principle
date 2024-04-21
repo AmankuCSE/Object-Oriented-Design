@@ -1,0 +1,118 @@
+/**
+ * This class represents a rectangle.
+ * It has width and height properties.
+ */
+class Rectangle {
+    private double width;
+    private double height;
+
+    /**
+     * Constructs a rectangle with the given width and height.
+     * @param width The width of the rectangle.
+     * @param height The height of the rectangle.
+     */
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    /**
+     * Gets the width of the rectangle.
+     * @return The width.
+     */
+    public double getWidth() {
+        return width;
+    }
+
+    /**
+     * Sets the width of the rectangle.
+     * @param width The new width.
+     */
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    /**
+     * Gets the height of the rectangle.
+     * @return The height.
+     */
+    public double getHeight() {
+        return height;
+    }
+
+    /**
+     * Sets the height of the rectangle.
+     * @param height The new height.
+     */
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    /**
+     * Calculates the area of the rectangle.
+     * @return The area.
+     */
+    public double calculateArea() {
+        return width * height;
+    }
+}
+
+/**
+ * This class represents a square, which is a special type of rectangle where width and height are equal.
+ * It extends the Rectangle class.
+ */
+class Square extends Rectangle {
+    /**
+     * Constructs a square with the given side length.
+     * @param sideLength The length of each side of the square.
+     */
+    public Square(double sideLength) {
+        super(sideLength, sideLength);
+    }
+
+    /**
+     * Sets the width of the square.
+     * Overrides the setWidth method in Rectangle class to maintain square properties.
+     * @param width The new width (side length).
+     */
+    @Override
+    public void setWidth(double width) {
+        super.setWidth(width);
+        super.setHeight(width); // Maintain square properties
+    }
+
+    /**
+     * Sets the height of the square.
+     * Overrides the setHeight method in Rectangle class to maintain square properties.
+     * @param height The new height (side length).
+     */
+    @Override
+    public void setHeight(double height) {
+        super.setHeight(height);
+        super.setWidth(height); // Maintain square properties
+    }
+}
+
+/**
+ * This class demonstrates the Liskov Substitution Principle.
+ * It shows how a subclass (Square) can be used interchangeably with its superclass (Rectangle).
+ */
+public class LiskovSubstitutionDemo {
+    /**
+     * Prints the area of a rectangle.
+     * @param rectangle The rectangle object.
+     */
+    public static void printArea(Rectangle rectangle) {
+        System.out.println("Area of the rectangle: " + rectangle.calculateArea());
+    }
+
+    public static void main(String[] args) {
+        // Create a Rectangle object and calculate its area
+        Rectangle rectangle = new Rectangle(4, 5);
+        printArea(rectangle);
+
+        // Create a Square object and calculate its area
+        Square square = new Square(4);
+        printArea(square);
+    }
+}
