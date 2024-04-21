@@ -1,1 +1,86 @@
+/**
+ * This interface represents a payment method.
+ * It is open for extension by allowing new payment methods to implement this interface.
+ */
+interface PaymentMethod {
+    /**
+     * Performs the payment process.
+     * @param amount The amount to be paid.
+     */
+    void pay(double amount);
+}
+
+/**
+ * This class represents a credit card payment method.
+ * It implements the PaymentMethod interface and provides its own implementation of pay().
+ */
+class CreditCardPayment implements PaymentMethod {
+    private String cardNumber;
+    private String expiryDate;
+    private String cvv;
+
+    /**
+     * Constructs a credit card payment with the given card information.
+     * @param cardNumber The credit card number.
+     * @param expiryDate The expiry date of the credit card.
+     * @param cvv The CVV number of the credit card.
+     */
+    public CreditCardPayment(String cardNumber, String expiryDate, String cvv) {
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
+    }
+
+    /**
+     * Performs the credit card payment process.
+     * @param amount The amount to be paid.
+     */
+    @Override
+    public void pay(double amount) {
+        // Code to process credit card payment
+        System.out.println("Paid $" + amount + " using credit card.");
+    }
+}
+
+/**
+ * This class represents a cash payment method.
+ * It implements the PaymentMethod interface and provides its own implementation of pay().
+ */
+class CashPayment implements PaymentMethod {
+
+    /**
+     * Performs the cash payment process.
+     * @param amount The amount to be paid.
+     */
+    @Override
+    public void pay(double amount) {
+        // Code to process cash payment
+        System.out.println("Paid $" + amount + " in cash.");
+    }
+}
+
+/**
+ * This class demonstrates the Open/Closed Principle.
+ * It is open for extension by allowing new payment methods to be added without modifying this class.
+ */
+public class PaymentDemo {
+    /**
+     * Makes a payment using the given payment method and amount.
+     * @param paymentMethod The payment method to use.
+     * @param amount The amount to be paid.
+     */
+    public static void makePayment(PaymentMethod paymentMethod, double amount) {
+        paymentMethod.pay(amount);
+    }
+
+    public static void main(String[] args) {
+        // Make a credit card payment
+        CreditCardPayment creditCardPayment = new CreditCardPayment("1234 5678 9012 3456", "12/25", "123");
+        makePayment(creditCardPayment, 100.0);
+
+        // Make a cash payment
+        CashPayment cashPayment = new CashPayment();
+        makePayment(cashPayment, 50.0);
+    }
+}
 
