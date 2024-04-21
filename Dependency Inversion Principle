@@ -1,0 +1,87 @@
+/**
+ * This interface represents a message service.
+ */
+interface MessageService {
+    /**
+     * Sends a message.
+     * @param message The message to be sent.
+     */
+    void sendMessage(String message);
+}
+
+/**
+ * This class represents an email service.
+ * It implements the MessageService interface.
+ */
+class EmailService implements MessageService {
+    /**
+     * Sends an email message.
+     * @param message The message to be sent.
+     */
+    @Override
+    public void sendMessage(String message) {
+        System.out.println("Sending email: " + message);
+    }
+}
+
+/**
+ * This class represents an SMS service.
+ * It implements the MessageService interface.
+ */
+class SMSService implements MessageService {
+    /**
+     * Sends an SMS message.
+     * @param message The message to be sent.
+     */
+    @Override
+    public void sendMessage(String message) {
+        System.out.println("Sending SMS: " + message);
+    }
+}
+
+/**
+ * This class represents a notification service.
+ * It depends on the MessageService interface for sending messages.
+ */
+class NotificationService {
+    private final MessageService messageService;
+
+    /**
+     * Constructs a notification service with the given message service.
+     * @param messageService The message service to be used for sending messages.
+     */
+    public NotificationService(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    /**
+     * Sends a notification message.
+     * @param message The message to be sent.
+     */
+    public void sendNotification(String message) {
+        messageService.sendMessage(message);
+    }
+}
+
+/**
+ * This class demonstrates the Dependency Inversion Principle.
+ * It shows how high-level modules (NotificationService) depend on abstractions (MessageService interface),
+ * and low-level modules (EmailService, SMSService) also depend on the same abstractions.
+ */
+public class DependencyInversionDemo {
+    public static void main(String[] args) {
+        // Create an email service
+        MessageService emailService = new EmailService();
+
+        // Create an SMS service
+        MessageService smsService = new SMSService();
+
+        // Create a notification service using email service
+        NotificationService emailNotificationService = new NotificationService(emailService);
+        emailNotificationService.sendNotification("This is an email notification");
+
+        // Create a notification service using SMS service
+        NotificationService smsNotificationService = new NotificationService(smsService);
+        smsNotificationService.sendNotification("This is an SMS notification");
+    }
+}
